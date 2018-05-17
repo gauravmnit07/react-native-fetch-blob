@@ -472,22 +472,15 @@ public class RNFetchBlobFS {
             while ((len = in.read(buf)) > 0) {
                 out.write(buf, 0, len);
             }
-
-        } catch (Exception err) {
-            callback.invoke(err.getLocalizedMessage());
-            return;
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-                if (out != null) {
-                    out.close();
-                }
-                callback.invoke();
-            } catch (Exception e) {
-                callback.invoke(e.getLocalizedMessage());
+            if (in != null) {
+                in.close();
             }
+            if (out != null) {
+                out.close();
+            }
+            callback.invoke();
+        } catch (Exception e) {
+                callback.invoke(e.getLocalizedMessage());
         }
     }
 
