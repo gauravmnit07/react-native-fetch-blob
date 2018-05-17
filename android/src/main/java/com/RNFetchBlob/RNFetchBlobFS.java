@@ -475,6 +475,7 @@ public class RNFetchBlobFS {
 
         } catch (Exception err) {
             callback.invoke(err.getLocalizedMessage());
+            return;
         } finally {
             try {
                 if (in != null) {
